@@ -100,12 +100,22 @@ namespace JWTWithEncryptedClaims.Controllers
             {
                 try
                 {
+                    var bodyEncoded = jwt.Split('.')[1];
+                    while ((bodyEncoded.Length % 4) != 0)
+                    {
+                        bodyEncoded += "=";
+                    }
+                    var bodyBytes = System.Convert.FromBase64String(bodyEncoded);
+                    var body = JObject.Parse(System.Text.Encoding.UTF8.GetString(bodyBytes));
+                    var issuer = body["iss"].Value<string>(); // e.g. "https://mrochonb2cprod.b2clogin.com/cf6c572c-c72e-4f31-bd0b-75623d040495/v2.0/"
+                    issuer = issuer.Substring(0, issuer.Length - 5); // remove trailing "v2.0/"
+                    var journeyName = body["acr"].Value<string>(); // e.g. "b2c_1a_cryptosignup_signin"
                     SecurityToken validatedToken;
                     var optsHandler = new JwtBearerPostConfigureOptions();
                     var options = new JwtBearerOptions() 
                     { 
-                        Authority = "https://mrochonb2cprod.b2clogin.com/mrochonb2cprod.onmicrosoft.com/b2c_1_basicsusi/v2.0/"
-                        /*, MetadataAddress = "" */ 
+                        Authority = $"{issuer}{journeyName}/v2.0/"
+                        /*, MetadataAddress = "" */
                     };
                     optsHandler.PostConfigure("JWTBearer", options);
                     var conf = await options.ConfigurationManager.GetConfigurationAsync(new System.Threading.CancellationToken());
