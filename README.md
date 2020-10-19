@@ -74,5 +74,13 @@ You can run this policy using this [link](https://mrochonb2cprod.b2clogin.com/mr
 
 ## Deployment
 
-TBD
+You can clone the provided code and deploy it into your own B2C tenant.
+
+I have published the REST functions as a multi-tenant AAD application so you should be able to consent it into your B2C tenant using the following OAuth2 request:
+
+    https://login.microsoftonline.com/<your B2C tenant>.onmicrosoft.com/oauth2/v2.0/authorize?client_id=a4938349-59ca-4238-b70d-1549ed19292d&response_type=code&response_mode=form_post&state=dummy&nonce=dummy&scope=openid
+
+Once you sign in and consent, you should see *TokenEncryption API* in your Enterprise Apps.
+
+You will then be able to register your own client applications (recipients of encrypted tokens), set their API Permission to access the *Token Encryption API* with *decrypt* application permission, and use client credentials to request a token to call the /decrypt endpoint. 
 
