@@ -20,7 +20,7 @@ This system consists of two main components: a web application providing the enc
 
     {"aud":"<application id>","property1":"CfDJ8OKS0TfF....27hGvaJ0kU3oTTl"}
 
-**/decrypt**: validates signature of the JWT token submitted in the body of the request and decrypts claims which can be validly decrypted. This operation must be called with an OAuth2 token allowing the caller to call this operation (scope=decrypt). The caller's application id (the *azp* claim) must be same as the *aud* claim of the token whose claims need to be decrypted.
+**/decrypt**: validates signature of the JWT token submitted in the body of the request and decrypts claims which can be validly decrypted. This operation must be called with an OAuth2 token allowing the caller to call this operation (*roles* claim **must** include *decrypt* role). The caller's application id (the *azp* claim) must be same as the *aud* claim of the token whose claims need to be decrypted.
 
 **Request**
 

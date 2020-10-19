@@ -62,7 +62,7 @@ namespace JWTWithEncryptedClaims.Controllers
         [HttpPost("decrypt")]
         public async Task Decrypt() 
         {
-            Request.HttpContext.VerifyUserHasAnyAcceptedScope("decrypt");
+            //Request.HttpContext.VerifyUserHasAnyAcceptedScope("decrypt");
             var jwt = "";
             using (var reader = new StreamReader(Request.Body))
             {
