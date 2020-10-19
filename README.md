@@ -74,7 +74,7 @@ You can run this policy using this [link](https://mrochonb2cprod.b2clogin.com/mr
 
 ## Deployment
 
-You can clone the provided code and deploy it into your own B2C tenant.
+You can clone the provided code and deploy it into your own Azure subscription and B2C tenant.
 
 I have published the REST functions as a multi-tenant AAD application so you should be able to consent it into your B2C tenant using the following OAuth2 request:
 
