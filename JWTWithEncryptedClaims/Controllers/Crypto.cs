@@ -62,7 +62,7 @@ namespace JWTWithEncryptedClaims.Controllers
         [HttpPost("decrypt")]
         public async Task Decrypt() 
         {
-            //Request.HttpContext.VerifyUserHasAnyAcceptedScope("decrypt");
+            Request.HttpContext.VerifyUserHasAnyAcceptedScope("decrypt");
             var jwt = "";
             using (var reader = new StreamReader(Request.Body))
             {
@@ -122,7 +122,7 @@ namespace JWTWithEncryptedClaims.Controllers
                     options.TokenValidationParameters.IssuerSigningKeys = conf.SigningKeys;
                     options.TokenValidationParameters.ValidateAudience = false;
                     options.TokenValidationParameters.ValidateIssuer = false;
-                    options.TokenValidationParameters.ValidateIssuerSigningKey = false;
+                    //options.TokenValidationParameters.ValidateIssuerSigningKey = false;
                     var principal = validator.ValidateToken(jwt, options.TokenValidationParameters, out validatedToken);
                     return principal;
                 }
