@@ -6,7 +6,7 @@ Provides Azure B2C JWT token confidentiality by encrypting selected claims prior
 This system consists of two main components: a web application providing the encryption/decryption operations and B2C policies calling the encryption operation.
 
 ### REST functions
-**/encrypt**: encrypt all properties of a JSON object and return a JSON object with same properties with relavant values encrypted. This operation is used by B2C custom policies to encypt selected claims. The input object **must** include the *aud* claim identifying the target application for the token. This is the application which may call the /decrypt operation. /encrypt does not use any authentication at this time.
+**/encrypt**: encrypt all properties of a JSON object and return a JSON object with same properties with relevant values encrypted. This operation is used by B2C custom policies to encrypt selected claims. The input object **must** include the *aud* claim identifying the target application for the token. This is the application which may call the /decrypt operation. /encrypt does not use any authentication at this time.
 
 **Request**
 
@@ -70,13 +70,13 @@ This system consists of two main components: a web application providing the enc
       </TechnicalProfiles>
     </ClaimsProvider>
 
-You can run this policy using this [link](https://mrochonb2cprod.b2clogin.com/mrochonb2cprod.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_CRYPTOsignup_signin&client_id=68f6e047-5204-471a-b94b-b0df615e8ea0&nonce=defaultNonce&redirect_uri=https%3A%2F%2Foidcdebugger.com%2Fdebug&scope=openid&response_type=id_token&prompt=login). The entered *Display Name* will show as encypted in the displayed token.
+You can run this policy using this [link](https://mrochonb2cprod.b2clogin.com/mrochonb2cprod.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_CRYPTOsignup_signin&client_id=68f6e047-5204-471a-b94b-b0df615e8ea0&nonce=defaultNonce&redirect_uri=https%3A%2F%2Foidcdebugger.com%2Fdebug&scope=openid&response_type=id_token&prompt=login). The entered *Display Name* will show as encrypted in the displayed token.
 
 ## Deployment
 
 You can clone the provided code and deploy it into your own Azure subscription and B2C tenant.
 
-I have published the REST functions as a multi-tenant AAD application so you should be able to consent it into your B2C tenant. enter the following request into a browser:
+I have published the REST functions as a multi-tenant AAD application so you should be able to consent it into your B2C tenant. Enter the following request into a browser:
 
     https://login.microsoftonline.com/<your B2C tenant>.onmicrosoft.com/oauth2/v2.0/authorize?client_id=a4938349-59ca-4238-b70d-1549ed19292d&response_type=code&response_mode=form_post&state=dummy&nonce=dummy&scope=openid
 
