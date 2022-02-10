@@ -1,4 +1,7 @@
 # Claims Encryption
+
+**NOTE:** This repo is now replaced by a [new sample](https://github.com/mrochon/b2csamples/tree/master/Policies/ClaimsEncryption).
+
 ## Purpose
 Provides Azure B2C JWT token confidentiality by encrypting selected claims prior to token issuance and providing support for their decryption by confidential clients for which these tokens were intended.
 
